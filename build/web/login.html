@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Login Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Festive&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/loginStyle.css">
+    </head>
+    <body style="background-color: #20B0A9">
+        <h1>Welcome to Peter's Store!</h1>
+        <p>Login Here</p><br/>
+        <div class="login-container">
+            <form action="MainController" method="POST">
+                <i> User ID </i>: <input type="text" name="userID" placeholder="Input your ID"/><br/>
+                <i> Password </i>: <input type="password" name="password" placeholder="Input your password"/><br/><br/>
+                <div class="btn_submit">
+                    <button type="submit" name="action" value="Login">Login</button>
+                    <button type="reset" value="Reset">Reset</button>
+                </div>
+                <br/>
+            </form>
+        </div>
+        <div style="text-align: center;margin-top: 1rem">
+            <a href="create.jsp" class="myBtn">
+                Register now
+            </a>
+        </div>
+    </body>
+</html>
