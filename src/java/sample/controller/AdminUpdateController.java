@@ -26,15 +26,6 @@ public class AdminUpdateController extends HttpServlet {
     public static final String SUCCESS = "AdminSearchController";
     public static final String LOGOUT = "LogoutController";
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -87,9 +78,9 @@ public class AdminUpdateController extends HttpServlet {
 
                 boolean checkUpdate = dao.updateUser(user);
                 if (checkUpdate) {// update thành công
-                    if (userID.trim().equalsIgnoreCase(loginUser.getUserID())) {//update chính Admin đang xài > out ra login
+                    if (userID.trim().equalsIgnoreCase(loginUser.getUserID())) {
                         url = LOGOUT; //     login
-                    } else { // update ng khác thì back > admin search controller
+                    } else {
                         url = SUCCESS; //   admin search controller
                         request.setAttribute("MESSAGE", "*** Update successfully!");
                         List<UserDTO> list = dao.getAllUser();

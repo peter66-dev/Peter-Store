@@ -35,7 +35,7 @@ public class OrderDAO {
                     stm = conn.prepareStatement(sql);
                     stm.setString(1, userID);
                     stm.setDouble(2, price);
-                    int row = stm.executeUpdate();// insert, delete, update 
+                    int row = stm.executeUpdate();
                     if (row > 0) {
                         check = true;
                     }
