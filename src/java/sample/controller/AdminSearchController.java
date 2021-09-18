@@ -39,14 +39,14 @@ public class AdminSearchController extends HttpServlet {
             HttpSession session = request.getSession();
             String search = request.getParameter("search");
             if (search.isEmpty()) {
-                request.setAttribute("MESSAGE", "*** Sorry, we don't know who you want to find!");
+                request.setAttribute("ERROR_MESSAGE_ADMIN", "Sorry, we don't know who you want to find!");
             } else {
                 UserDAO dao = new UserDAO();
                 List<UserDTO> list = dao.getListUser(search);
                 if (!list.isEmpty()) {
                     session.setAttribute("LIST_USER", list);
                 } else {
-                    request.setAttribute("MESSAGE", "*** Sorry, this user hasn't existed in my system!");
+                    request.setAttribute("ERROR_MESSAGE_ADMIN", "Sorry, this user hasn't existed in my system!");
                 }
             }
         } catch (Exception e) {

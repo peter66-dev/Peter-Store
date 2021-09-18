@@ -5,32 +5,48 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-        <title>Login Page</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Festive&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="css/loginStyle.css">
-    </head>
-    <body style="background-color: #20B0A9">
-        <h1>Welcome to Peter's Store!</h1>
-        <p>Login Here</p><br/>
-        <div class="login-container">
-            <form action="MainController" method="POST">
-                <i> User ID </i>: <input type="text" name="userID" placeholder="Input your ID"/><br/>
-                <i> Password </i>: <input type="password" name="password" placeholder="Input your password"/><br/><br/>
-                <div class="btn_submit">
-                    <button type="submit" name="action" value="Login">Login</button>
-                    <button type="reset" value="Reset">Reset</button>
+
+<head>
+    <title>Login Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/loginStyle.css">
+</head>
+
+<body>
+    <div class="container text-center">
+        <h1 class="darksalmon">Welcome to Peter's Store!</h1>
+        <p>Login Here</p><br />
+        <form action="MainController" method="POST">
+            <div class="mb-3 row">
+                <label style="font-weight: 700;" for="userID" class="col-sm-2 col-form-label text-center">User
+                    ID</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="userID">
                 </div>
-                <br/>
-            </form>
-        </div>
-        <div style="text-align: center;margin-top: 1rem">
-            <a href="create.jsp" class="myBtn">
+            </div>
+            <div class="mb-3 row">
+                <label style="font-weight: 700;" for="password" class="col-sm-2 col-form-label text-center">Password</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" name="password" />
+                </div>
+            </div>
+            <div class="container text-center">
+                <button class="btn btn-primary" type="submit" name="action" value="Login">Login</button>
+                <button class="btn btn-primary" type="Reset">Reset</button>
+            </div>
+        </form>
+        <div style="text-align: center;margin-top: 1rem ">
+            <a href="create.jsp " class="btn btn-success text-decoration-none ">
                 Register now
             </a>
         </div>
-    </body>
+    </div>
+    <script src="./Javascript/main.js"></script>
+</body>
+
 </html>

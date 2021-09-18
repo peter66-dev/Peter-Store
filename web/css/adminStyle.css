@@ -1,80 +1,20 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-
-
-/* 
-    Created on : Jul 11, 2021, 3:32:20 PM
-    Author     : Dell
-*/
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.form_logout button {
-    padding: 0.5rem;
-    margin: 0.2rem;
-    background-color: white;
-    font-size: 17px;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s;
-    border-radius: 10%;
-}
-
-.form_logout button:hover {
-    transition: 0.3s;
-    background-color: #11e3fa;
-    color: white;
+body {
+    background-color: #d5df7b59;
 }
 
 .welcome {
-    color: #291aad;
+    color: #2710f0;
     text-align: center;
     font-family: 'Festive', cursive;
     font-family: 'Zen Tokyo Zoo', cursive;
     font-size: 3rem;
-}
-
-.input_search {
-    width: 10rem;
-    padding: 8px;
-    margin: 5px 0 22px 0;
-    border: 1px solid black;
-    background: #f1f1f1;
-}
-
-.btn_search {
-    border: none;
-    margin-left: 0.3rem;
-    margin-bottom: 1rem;
-    padding: 0.6rem;
-    background-color: white;
-    border-radius: 10%;
-    color: black;
-    font-size: 1rem;
-    transition: 0.3s;
-}
-
-.btn_search:hover {
-    transition: 0.3s;
-    color: white;
-    background-color: rgb(70, 41, 231);
-    cursor: pointer;
-}
-
-.form_search {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.6rem;
-    color: white;
-    margin-bottom: 1rem;
+    font-weight: 620;
 }
 
 .error_message {
@@ -98,51 +38,23 @@ and open the template in the editor.
     font-family: cursive;
 }
 
-table {
-    border-collapse: collapse;
-    border: 1px solid black;
-    background-color: white;
-    width: 100%;
-    font-size: 1.4rem;
+.textRight {
+    text-align: right;
 }
 
-table tr {
-    background-color: #FFC480
+.textCenter {
+    text-align: center;
 }
 
-.update,
-.delete {
-    border: none;
-    display: block;
-    margin: 0 auto;
-    font-size: 1.2rem;
-    background-color: #D9FFD8;
-    transition: 0.3s;
-    color: royalblue;
+.myForm {
+    display: flex;
+    justify-content: center !important;
 }
 
-.delete {
-    color: rgb(209, 94, 94);
+.myForm input button {
+    margin-left: 0.5rem;
 }
 
-.update:hover {
-    cursor: pointer;
-    transition: 0.1s;
-    color: rgb(27, 12, 235);
-    font-weight: 550;
-}
-
-.delete:hover {
-    cursor: pointer;
-    transition: 0.1s;
-    color: rgb(255, 9, 9);
-    font-weight: 550;
-}
-
-@media screen and (max-width: 600px) {
-    .form_search {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+.myForm button {
+    margin-left: 0.1rem;
 }

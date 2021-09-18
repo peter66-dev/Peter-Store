@@ -244,7 +244,7 @@ public class UserDAO {
         Connection conn = null;
         PreparedStatement stm = null;
         try {
-            String fullName = MyStyle.toUpperFirstLetter(user.getFullName());
+            String fullName = MyStyle.toTitleCase(MyStyle.toUpperFirstLetter(user.getFullName().trim()));
             String address = MyStyle.toTitleCase(MyStyle.toUpperFirstLetter(user.getAddress().trim()));
 
             conn = DBUtils.getConnection();

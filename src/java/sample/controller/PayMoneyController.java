@@ -79,8 +79,7 @@ public class PayMoneyController extends HttpServlet {
                     }
                     if (orderDetailDAO.createOrderDetail(orderID, cart)) {
                         log("Create Order Detail Successfully!");
-                        session.setAttribute("SHOPPING", "Buying successfully! </br>Thank you for your order! "
-                                + "</br>You are the heart of my business, " + loginUser.getFullName() + "!");
+                        request.setAttribute("SHOPPING", "Thank you for your order from Peter's Store, "+loginUser.getFullName() +" !");
                         url = SUCCESS;
                         cart.getCart().clear();
                         if (cart.getCart().isEmpty()) {
@@ -113,7 +112,8 @@ public class PayMoneyController extends HttpServlet {
         } catch (Exception e) {
             log("Error at Pay Money Controller: " + e.toString());
         } finally {
-            response.sendRedirect(url);
+//            response.sendRedirect(url);
+            request.getRequestDispatcher(url).forward(request, response);
         }
 
     }

@@ -47,10 +47,10 @@ public class RemoveCartController extends HttpServlet {
                 boolean check = dao.updateOrder(orderID, cart);
                 if (check) {
                     log("Removing successfully!");
-                    request.setAttribute("VIEWCART_MESSAGE", "*** Deleting book successfully!");
+                    request.setAttribute("VIEWCART_MESSAGE", "Deleting book successfully!");
                 } else {
                     log("Sai ở class OrderDAO hàm updateOrder rồi!");
-                    request.setAttribute("VIEWCART_MESSAGE", "*** Sorry, Deleting book failed!");
+                    request.setAttribute("ERROR_VIEWCART_MESSAGE", "Sorry, Deleting book failed!");
                 }
             }
         } catch (Exception e) {

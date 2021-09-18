@@ -60,11 +60,11 @@ public class AddToCartController extends HttpServlet {
             } else {
                 if (quantityBuy <= 0) {
                     url = SUCCESS;
-                    request.setAttribute("SHOPPING_MESSAGE", "*** Sorry, quantity must be > 0!");
+                    request.setAttribute("ERROR_SHOPPING_MESSAGE", "Sorry, quantity must be more than 0!");
                 } else {
                     if (quantityBuy > quantityInStock) {
                         url = SUCCESS;
-                        request.setAttribute("SHOPPING_MESSAGE", "*** Sorry, We don't have enough quantity for this book!");
+                        request.setAttribute("ERROR_SHOPPING_MESSAGE", "Sorry, We don't have enough quantity for this book!");
                     } else {
                         OrderDAO orderDao = new OrderDAO();
                         ProductDTO pro = new ProductDTO(productID, quantityBuy, price, productName, categoryID, writer);
@@ -90,7 +90,7 @@ public class AddToCartController extends HttpServlet {
                         session.setAttribute("CART", cart);
                         url = SUCCESS;
                         String message = "Added " + quantityBuy + " '" + productName + "' to " + user.getFullName() + "'s cart!";
-                        request.setAttribute("SHOPPING_MESSAGE", message);
+                        request.setAttribute("SUCCESS_SHOPPING_MESSAGE", message);
                     }
                 }
             }

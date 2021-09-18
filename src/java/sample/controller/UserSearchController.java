@@ -42,7 +42,7 @@ public class UserSearchController extends HttpServlet {
             HttpSession session = request.getSession();
 
             if (search.trim().length() == 0) {
-                request.setAttribute("SHOPPING_MESSAGE", "*** Sorry, you should enter hint to search!");
+                request.setAttribute("ERROR_SHOPPING_MESSAGE", "Sorry, you should enter hint to search!");
             } else {
                 List<ProductDTO> list = new ArrayList<>();
                 if ("Product Name".equalsIgnoreCase(userChoice)) {
@@ -59,7 +59,7 @@ public class UserSearchController extends HttpServlet {
 
                 if (!list.isEmpty()) {
                 } else {
-                    request.setAttribute("SHOPPING_MESSAGE", "*** Sorry, this product is out of stock!");
+                    request.setAttribute("ERROR_SHOPPING_MESSAGE", "Sorry, this product is out of stock!");
                 }
             }
         } catch (Exception e) {

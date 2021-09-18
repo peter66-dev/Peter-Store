@@ -42,9 +42,9 @@ public class UserShowAllProductController extends HttpServlet {
             List<ProductDTO> list = new ArrayList<>();
             list = dao.getAllProduct();
             if (!list.isEmpty()) {
-                request.setAttribute("SHOPPING_MESSAGE", "*** All books here! ***");
+                request.setAttribute("SUCCESS_SHOPPING_MESSAGE", "All books here!");
             } else {
-                request.setAttribute("SHOPPING_MESSAGE", "*** Sorry, don't have anybook in our system!");
+                request.setAttribute("ERROR_SHOPPING_MESSAGE", "Sorry, don't have anybook in our system!");
             }
             session.setAttribute("LIST_BOOK", list);
         } catch (Exception e) {

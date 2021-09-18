@@ -5,45 +5,18 @@
 }
 
 body {
-    background-color: #F2DC98;
+    background-color: rgb(240, 231, 231);
 }
 
-h1 {
-    margin: 3rem 0rem;
-    line-height: 3rem;
-    text-align: center;
+h1 p {
+    font-weight: 620;
     color: red;
     font-family: 'Roboto Condensed', sans-serif;
 }
 
-.message {
+h1 {}
+
+.myClass {
     display: flex;
-    justify-content: center;
-}
-
-.loginBtn,
-.storeBtn {
-    margin-right: 0.2rem;
-    text-decoration: none;
-    color: black;
-    padding-top: 0.6rem;
-    padding-bottom: 0.6rem;
-    padding-right: 0.4rem;
-    padding-left: 0.4rem;
-    border-radius: 10%;
-    background-color: white;
-    font-size: 1.3rem;
-    transition: 0.3s;
-}
-
-.loginBtn:hover {
-    background-color: rgb(161, 240, 243);
-    color: white;
-    transition: 0.3s;
-}
-
-.storeBtn:hover {
-    background-color: rgb(28, 25, 182);
-    color: white;
-    transition: 0.3s;
+    justify-content: center !important;
 }

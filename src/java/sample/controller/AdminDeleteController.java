@@ -42,18 +42,18 @@ public class AdminDeleteController extends HttpServlet {
             String roleID = request.getParameter("roleID");
 
             if (userID.equalsIgnoreCase(loginUser.getUserID())) {
-                request.setAttribute("MESSAGE", "*** Sorry, this Admin is logged in, can't delete!");
+                request.setAttribute("ERROR_MESSAGE_ADMIN", "Sorry, this Admin is logged in, can't delete!");
             } else if ("AD".equals(roleID.trim())) {
-                request.setAttribute("MESSAGE", "*** Sorry, Admin can't be deleted!");
+                request.setAttribute("ERROR_MESSAGE_ADMIN", "Sorry, Admin can't be deleted!");
             } else {
                 UserDAO dao = new UserDAO();
                 boolean check = dao.deleteUser(userID);
                 if (check) {
-                    request.setAttribute("MESSAGE", "*** Deleting successfully!");
+                    request.setAttribute("SUCCESS_MESSAGE_ADMIN", "Deleting successfully!");
                     List<UserDTO> list = dao.getAllUser();
                     session.setAttribute("LIST_USER", list);
                 } else {
-                    request.setAttribute("MESSAGE", "*** Deleting failed!");
+                    request.setAttribute("ERROR_MESSAGE_ADMIN", "Deleting failed!");
                 }
             }
         } catch (Exception e) {

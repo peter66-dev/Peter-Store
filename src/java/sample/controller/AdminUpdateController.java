@@ -29,6 +29,7 @@ public class AdminUpdateController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
         String url = ERROR;
         try {
             HttpSession session = request.getSession();
@@ -82,7 +83,7 @@ public class AdminUpdateController extends HttpServlet {
                         url = LOGOUT; //     login
                     } else {
                         url = SUCCESS; //   admin search controller
-                        request.setAttribute("MESSAGE", "*** Update successfully!");
+                        request.setAttribute("SUCCESS_MESSAGE_ADMIN", "Updating successfully!");
                         List<UserDTO> list = dao.getAllUser();
                         session.setAttribute("LIST_USER", list);
                     }

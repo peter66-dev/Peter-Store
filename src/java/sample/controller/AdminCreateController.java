@@ -56,24 +56,24 @@ public class AdminCreateController extends HttpServlet {
             boolean check = true;
 
             if (!(userID.length() == 3 || userID.length() == 4)) {
-                userError.setUserIDError("*** Sorry, user ID has 3 or 4 characters, please !!!");
+                userError.setUserIDError("*** Sorry, user ID has 3 or 4 characters, please !");
                 check = false;
             }
             if (fullName.length() < 5) {
-                userError.setFullNameError("*** Sorry, full Name has more than 5 characters, please !!!");
+                userError.setFullNameError("*** Sorry, full Name has more than 5 characters, please !");
                 check = false;
             }
             if (!password.equals(confirm)) {
-                userError.setPasswordError("*** Sorry, confirm password is not correct, please !!!");
+                userError.setConfirmPasswordError("*** Sorry, confirm password is not correct, please !");
                 check = false;
             }
 
             List<String> listEmail = UserDAO.getListEmail();
             if ((!email.contains("@") || email.trim().length() < 5 || UserDAO.checkExist(email, listEmail))) {
                 if ((!email.contains("@") || email.trim().length() < 5)) {
-                    userError.setEmailError("*** Sorry, email must be more than 5 characters and has @gmail.com, please !!!");
+                    userError.setEmailError("*** Sorry, email must be more than 5 characters and has @gmail.com, please !");
                 } else {
-                    userError.setEmailError("*** Sorry, this Email has existed in system !!!");
+                    userError.setEmailError("*** Sorry, this Email has existed in system !");
                 }
                 check = false;
             }
@@ -81,14 +81,14 @@ public class AdminCreateController extends HttpServlet {
             List<String> listPhoneNumber = UserDAO.getListPhoneNumber();
             if (!(phoneNumber.length() >= 10 && phoneNumber.length() <= 12) || UserDAO.checkExist(phoneNumber, listPhoneNumber)) {
                 if (!(phoneNumber.length() >= 10 && phoneNumber.length() <= 12)) {
-                    userError.setPhoneNumberError("*** Sorry, phone Number must be in [10;12] numbers, please !!!");
+                    userError.setPhoneNumberError("*** Sorry, phone Number must be in [10;12] numbers, please !");
                 } else {
-                    userError.setPhoneNumberError("*** Sorry, this phone number has existed in system !!!");
+                    userError.setPhoneNumberError("*** Sorry, this phone number has existed in system !");
                 }
                 check = false;
             }
             if (address.length() < 5) {
-                userError.setAddressError("*** Sorry, address has more 5 characters, please !!!");
+                userError.setAddressError("*** Sorry, address has more 5 characters, please !");
                 check = false;
             }
             if (check) {
@@ -104,7 +104,7 @@ public class AdminCreateController extends HttpServlet {
         } catch (SQLException ex) {
             log("Create Controller _ SQL: " + ex.getMessage());
             if (ex.getMessage().contains("duplicate")) {
-                userError.setUserIDError("*" + userID.toUpperCase() + " has existed in our system!!!");
+                userError.setUserIDError(" *** " + userID.toUpperCase() + " has existed in our system!");
                 request.setAttribute("USER_ERROR", userError);
             }
         } catch (Exception e) {

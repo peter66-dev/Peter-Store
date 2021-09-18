@@ -38,7 +38,7 @@ public class UpdateCartController extends HttpServlet {
         String url = "viewCart.jsp";
         try {
             int newQuantity = Integer.parseInt(request.getParameter("quantityBuy"));
-            HttpSession session = request.getSession();
+            HttpSession session = request.getSession();// check link
 
             if (newQuantity > 0) {
                 String productID = request.getParameter("productID");
@@ -61,14 +61,14 @@ public class UpdateCartController extends HttpServlet {
                 boolean check = dao.updateOrder(orderID, cart);
                 if (check) {
                     log("Update order successfully!");
-                    request.setAttribute("VIEWCART_MESSAGE", "*** Updating order successfully!");
+                    request.setAttribute("VIEWCART_MESSAGE", "Updating order successfully!");
                     session.setAttribute("CART", cart);
                 } else {
                     log("Sai ở class OrderDAO hàm updateOrder rồi!");
-                    request.setAttribute("VIEWCART_MESSAGE", "*** Sorry, Updating order failed!");
+                    request.setAttribute("VIEWCART_MESSAGE", "Sorry, Updating order failed!");
                 }
             } else {
-                request.setAttribute("VIEWCART_MESSAGE", "*** Sorry, quantity must be > 0</br> You can delete book if you dont wanna buy!");
+                request.setAttribute("ERROR_VIEWCART_MESSAGE", "Sorry, quantity must be more than 0 !");
             }
 
         } catch (Exception e) {
