@@ -5,6 +5,8 @@
  */
 package sample.user;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import sample.utils.DBUtils;
 import myLibrary.MyStyle;
+import sample.utils.HashPassword;
 
 /**
  *
@@ -20,14 +23,17 @@ import myLibrary.MyStyle;
  */
 public class UserDAO {
 
-    public UserDTO checkLogin(String userID, String password) throws SQLException, ClassNotFoundException {
+    public UserDTO checkLogin(String userID, String password) throws SQLException, ClassNotFoundException, NoSuchAlgorithmException, InvalidKeySpecException {
         UserDTO user = null;
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
+        ArrayList<UserDTO> list = new ArrayList<>();
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
+                /*
+                LOGIN NÀY KHÔNG PHÂN BIỆT CHỮ HOA VÀ CHỮ THƯỜNG
                 String sql = "SELECT FullName, RoleID, Bank, Address, PhoneNumber, Gender, Email "
                         + "from tblUsers WHERE UserID = ? and Password = ? and StatusID = ?";
                 stm = conn.prepareStatement(sql);
@@ -44,6 +50,33 @@ public class UserDAO {
                     String gender = rs.getString("Gender");
                     String email = rs.getString("Email");
                     user = new UserDTO(userID, password, fullName, gender, roleID, email, phoneNumber, bank, address);
+                }
+                 */
+                String sql = "SELECT UserID, Password, FullName, RoleID, Bank, Address, PhoneNumber, Gender, Email "
+                        + "from tblUsers Where StatusID = ?";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, "A");
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    String userIDCol = rs.getString("UserID");
+                    String passwordCol = rs.getString("Password");
+                    String fullName = rs.getString("FullName");
+                    String roleID = rs.getString("RoleID");
+                    String bank = rs.getString("Bank");
+                    String address = rs.getString("Address");
+                    String phoneNumber = rs.getString("PhoneNumber");
+                    String gender = rs.getString("Gender");
+                    String email = rs.getString("Email");
+                    user = new UserDTO(userIDCol, passwordCol, fullName, gender, roleID, email, phoneNumber, bank, address);
+
+                    list.add(user);
+                }
+                user = null;
+                for (UserDTO u : list) {
+                    if (u.getUserID().equals(userID) && HashPassword.validatePassword(password, u.getPassword())) {
+//                        log("Input " + password + ", Password Enscrypt: " + u.getPassword());
+                        user = u;
+                    }
                 }
             }
         } finally {
@@ -170,17 +203,18 @@ public class UserDAO {
         return result;
     }
 
-    public boolean updateUser(UserDTO user) throws SQLException, ClassNotFoundException {
+    public boolean updateUser(UserDTO user) throws SQLException, ClassNotFoundException, NoSuchAlgorithmException, InvalidKeySpecException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement stm = null;
         try {
             String fullName = MyStyle.toUpperFirstLetter(user.getFullName().trim());
             String address = MyStyle.toTitleCase(MyStyle.toUpperFirstLetter(user.getAddress().trim()));
+            String password = HashPassword.createHash(user.getPassword());// enscrypt password
             conn = DBUtils.getConnection();
             if (conn != null) {
                 String sql = "UPDATE tblUsers SET FullName = ?, Gender = ?, Email = ?, "
-                        + "PhoneNumber = ?, Bank = ?, Address = ?, RoleID = ? WHERE UserID = ?";
+                        + "PhoneNumber = ?, Bank = ?, Address = ?, RoleID = ?, Password = ? WHERE UserID = ?";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, fullName);
                 stm.setString(2, user.getGender());
@@ -189,8 +223,8 @@ public class UserDAO {
                 stm.setString(5, user.getBank());
                 stm.setString(6, address);
                 stm.setString(7, user.getRoleID().trim().toUpperCase());
-                stm.setString(8, user.getUserID().trim());
-
+                stm.setString(8, password);
+                stm.setString(9, user.getUserID().trim());
                 check = stm.executeUpdate() > 0;
             }
         } finally {
@@ -239,14 +273,14 @@ public class UserDAO {
         return check;
     }
 
-    public boolean insertUser(UserDTO user) throws SQLException, ClassNotFoundException {
+    public boolean insertUser(UserDTO user) throws SQLException, ClassNotFoundException, NoSuchAlgorithmException, InvalidKeySpecException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement stm = null;
         try {
             String fullName = MyStyle.toTitleCase(MyStyle.toUpperFirstLetter(user.getFullName().trim()));
             String address = MyStyle.toTitleCase(MyStyle.toUpperFirstLetter(user.getAddress().trim()));
-
+            String password = HashPassword.createHash(user.getPassword());// Mã hóa password
             conn = DBUtils.getConnection();
             if (conn != null) {
                 String sql = "INSERT INTO tblUsers(FullName, RoleID, UserID, Password, Gender, Email, PhoneNumber, Bank, Address, StatusID)"
@@ -254,8 +288,8 @@ public class UserDAO {
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, fullName);
                 stm.setString(2, user.getRoleID().toUpperCase());
-                stm.setString(3, user.getUserID().toUpperCase());
-                stm.setString(4, user.getPassword());
+                stm.setString(3, user.getUserID());
+                stm.setString(4, password);
                 stm.setString(5, user.getGender());
                 stm.setString(6, user.getEmail());
                 stm.setString(7, user.getPhoneNumber());

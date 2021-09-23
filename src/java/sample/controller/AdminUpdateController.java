@@ -29,7 +29,7 @@ public class AdminUpdateController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         String url = ERROR;
         try {
             HttpSession session = request.getSession();
@@ -37,6 +37,8 @@ public class AdminUpdateController extends HttpServlet {
             List<UserDTO> listCheckExist = UserDAO.getListUserIDEmailPhone();
 
             String userID = request.getParameter("userID");
+            String password = request.getParameter("password");
+            String confirmPassword = request.getParameter("confirmPassword");
             String fullName = request.getParameter("fullName");
             String roleID = request.getParameter("roleID");
             String gender = request.getParameter("gender");
@@ -51,7 +53,10 @@ public class AdminUpdateController extends HttpServlet {
                 userError.setFullNameError("*** Sorry, full name must be more than 5 characters, please!!!");
                 check = false;
             }
-
+            if (!password.equals(confirmPassword)) {
+                userError.setConfirmPasswordError("*** Sorry, Password and Confirm password do not match each other, please !");
+                check = false;
+            }
             if ((!email.contains("@") || email.trim().length() < 5) || UserDAO.checkUpdateEmail(listCheckExist, email, userID)) {
                 if ((!email.contains("@") || email.trim().length() < 5)) {
                     userError.setEmailError("*** Sorry, email must be more than 5 characters and has @gmail.com, please!!!");
@@ -75,7 +80,7 @@ public class AdminUpdateController extends HttpServlet {
             }
             if (check) {
                 UserDAO dao = new UserDAO();
-                UserDTO user = new UserDTO(userID, "", fullName, gender, roleID, email, phoneNumber, bank, address);
+                UserDTO user = new UserDTO(userID, password, fullName, gender, roleID, email, phoneNumber, bank, address);
 
                 boolean checkUpdate = dao.updateUser(user);
                 if (checkUpdate) {// update thành công

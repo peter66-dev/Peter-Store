@@ -64,7 +64,7 @@ public class AdminCreateController extends HttpServlet {
                 check = false;
             }
             if (!password.equals(confirm)) {
-                userError.setConfirmPasswordError("*** Sorry, confirm password is not correct, please !");
+                userError.setConfirmPasswordError("*** Sorry, Password and Confirm password do not match each other, please !");
                 check = false;
             }
 

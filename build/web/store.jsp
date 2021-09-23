@@ -34,7 +34,7 @@
                 <c:url var="viewCart" value="MainController">
                     <c:param name="action" value="View Cart"></c:param>
                 </c:url>
-                <div class="container-fluid text-center">
+                
                     <c:if test="${user.fullName != null}">
                         <div class="two-side-class">
                             <a class="btn btn-primary" href="${logoutLink}">Log out</a>
@@ -47,7 +47,7 @@
                             <a class="btn btn-info" href="${viewCart}">My cart</a>
                         </div>
                     </c:if>
-
+                    <div class="container-fluid text-center">
                     <h1 id="welcome" class="text-secondary">Welcome ${user.fullName} to Peter's Store 📚📖!</h1>
                     <form action="MainController">
                         <div class="center-class">

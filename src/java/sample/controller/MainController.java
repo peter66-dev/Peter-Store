@@ -122,43 +122,6 @@ public class MainController extends HttpServlet {
                     break;
                 }
             }
-            /*
-            if ("Log in".equals(action)) {
-                url = LOGIN;
-            } else if ("Login".equals(action)) {
-                url = LOGIN_CONFIRM;
-            } else if ("Search".equals(action)) {
-                url = ADMIN_SEARCH;
-            } else if ("Delete".equals(action)) {
-                url = ADMIN_DELETE;
-            } else if ("Update".equals(action)) {
-                url = ADMIN_UPDATE;
-            } else if ("Confirm Update".equals(action)) {
-                url = ADMIN_UPDATE_CONFIRM;
-            } else if ("Log out".equals(action)) {
-                url = LOGOUT;
-            } else if ("Create".equals(action)) {
-                url = CREATE;
-            } else if ("Search Items".equals(action)) {
-                url = USER_SEARCH;
-            } else if ("Show All Products".equals(action)) {
-                url = USER_SHOW_ALL_PRODUCT;
-            } else if ("Show All Users".equals(action)) {
-                url = ADMIN_SHOW_ALL_USERS;
-            } else if ("Add To Cart".equals(action)) {
-                url = ADD_TO_CART;
-            } else if ("View Cart".equals(action)) {
-                url = VIEW_CART;
-            } else if ("Modify".equals(action)) {
-                url = UPDATE_CART;
-            } else if ("Remove".equals(action)) {
-                url = REMOVE_CART;
-            } else if ("Pay Money".equals(action)) {
-                url = PAY_MONEY;
-            } else {
-                session.setAttribute("ERROR_MESSAGE", "Sorry, function is not available!");
-            }
-            */
         } catch (Exception e) {
             log("Error at Main Controller: " + e.toString());
         } finally {
