@@ -22,6 +22,8 @@ public class UserDTO implements Serializable{
     private String phoneNumber;
     private String bank;
     private String address;
+    
+    
 
     public UserDTO() {
         userID = "";
