@@ -8,6 +8,14 @@ body {
     background-color: #8bda81;
 }
 
+.myClass {
+    margin-right: 0.2rem !important;
+}
+
+.myClass select:hover {
+    cursor: pointer !important;
+}
+
 .two-side-class {
     display: flex;
     justify-content: space-between !important;

@@ -79,7 +79,7 @@ public class PayMoneyController extends HttpServlet {
                     }
                     if (orderDetailDAO.createOrderDetail(orderID, cart)) {
                         log("Create Order Detail Successfully!");
-                        request.setAttribute("SHOPPING", "Thank you for your order from Peter's Store, "+loginUser.getFullName() +" !");
+                        request.setAttribute("SHOPPING", "Thank you for your order from Peter's Store, " + loginUser.getFullName() + " !");
                         url = SUCCESS;
                         cart.getCart().clear();
                         if (cart.getCart().isEmpty()) {

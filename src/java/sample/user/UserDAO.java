@@ -216,12 +216,12 @@ public class UserDAO {
                 String sql = "UPDATE tblUsers SET FullName = ?, Gender = ?, Email = ?, "
                         + "PhoneNumber = ?, Bank = ?, Address = ?, RoleID = ?, Password = ? WHERE UserID = ?";
                 stm = conn.prepareStatement(sql);
-                stm.setString(1, fullName);
+                stm.setNString(1, fullName);
                 stm.setString(2, user.getGender());
                 stm.setString(3, user.getEmail().trim());
                 stm.setString(4, user.getPhoneNumber().trim());
                 stm.setString(5, user.getBank());
-                stm.setString(6, address);
+                stm.setNString(6, address);
                 stm.setString(7, user.getRoleID().trim().toUpperCase());
                 stm.setString(8, password);
                 stm.setString(9, user.getUserID().trim());
@@ -286,7 +286,7 @@ public class UserDAO {
                 String sql = "INSERT INTO tblUsers(FullName, RoleID, UserID, Password, Gender, Email, PhoneNumber, Bank, Address, StatusID)"
                         + "VALUES (?,?,?,?,?,?,?,?,?,?)";
                 stm = conn.prepareStatement(sql);
-                stm.setString(1, fullName);
+                stm.setNString(1, fullName);
                 stm.setString(2, user.getRoleID().toUpperCase());
                 stm.setString(3, user.getUserID());
                 stm.setString(4, password);
@@ -294,7 +294,7 @@ public class UserDAO {
                 stm.setString(6, user.getEmail());
                 stm.setString(7, user.getPhoneNumber());
                 stm.setString(8, user.getBank());
-                stm.setString(9, address);
+                stm.setNString(9, address);
                 stm.setString(10, "A");
                 check = stm.executeUpdate() > 0;
             }

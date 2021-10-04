@@ -85,12 +85,14 @@ public class AdminUpdateController extends HttpServlet {
                 boolean checkUpdate = dao.updateUser(user);
                 if (checkUpdate) {// update thành công
                     if (userID.trim().equalsIgnoreCase(loginUser.getUserID())) {
+                        log("Updating admin " + userID + " successfully!");
                         url = LOGOUT; //     login
                     } else {
                         url = SUCCESS; //   admin search controller
                         request.setAttribute("SUCCESS_MESSAGE_ADMIN", "Updating successfully!");
                         List<UserDTO> list = dao.getAllUser();
                         session.setAttribute("LIST_USER", list);
+                        log("Updating " + userID + " successfully!");
                     }
                 }
             } else {
